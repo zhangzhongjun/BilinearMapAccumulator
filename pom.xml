@@ -1,0 +1,200 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.github.zhangzhongjun</groupId>
+    <artifactId>BilinearMapAccumulator</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1</version>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>https://github.com/zhangzhongjun/${project.artifactId}</url>
+    <description>BilinearMapAccumulator is a library of bilinear-map accumulator for java</description>
+    
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>ZhongJun Zhang</name>
+            <email>18835109707@163.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+            <organization>XiDian University</organization>
+            <organizationUrl>https://www.xidian.edu.cn/</organizationUrl>
+        </developer>
+    </developers>
+   
+    <scm>
+        <connection>scm:git:https://github.com/zhangzhongjun/BilinearMapAccumulator.git</connection>
+        <developerConnection>scm:git:https://github.com/zhangzhongjun/BilinearMapAccumulator.git</developerConnection>
+        <url>https://github.com/zhangzhongjun/BilinearMapAccumulator</url>
+    <tag>BilinearMapAccumulator-0.1</tag>
+  </scm>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+            <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+    </properties>
+    
+     <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- GPG -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+ <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>Maven Central Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+        </profile>
+    </profiles>
+       
+
+    
+    <build>
+        <plugins>
+
+        <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.3</version>
+        <extensions>true</extensions>
+        <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+    </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.1</version>
+                <executions>
+                    <execution>
+                        <id>install-jpbc</id>
+                        <goals>
+                            <goal>
+                                install-file
+                            </goal>
+                        </goals>
+                        <phase>clean</phase>
+                        <configuration>
+                            <groupId>it.unisa.dia.gas.jpbc</groupId>
+                            <artifactId>jpbc</artifactId>
+                            <version>2.0</version>
+                            <packaging>jar</packaging>
+                            <file>${project.basedir}/lib/jpbc-api-2.0.0.jar</file>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-plaf</id>
+                        <goals>
+                            <goal>
+                                install-file
+                            </goal>
+                        </goals>
+                        <phase>clean</phase>
+                        <configuration>
+                            <groupId>it.unisa.dia.gas.plaf</groupId>
+                            <artifactId>plaf</artifactId>
+                            <version>2.0</version>
+                            <packaging>jar</packaging>
+                            <file>${project.basedir}/lib/jpbc-plaf-2.0.0.jar</file>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.54</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>it.unisa.dia.gas.jpbc</groupId>
+            <artifactId>jpbc</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>it.unisa.dia.gas.plaf</groupId>
+            <artifactId>plaf</artifactId>
+            <version>2.0</version>
+        </dependency>
+    </dependencies>
+</project>
