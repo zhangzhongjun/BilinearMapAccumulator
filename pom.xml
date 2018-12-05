@@ -3,7 +3,7 @@
     <groupId>com.github.zhangzhongjun</groupId>
     <artifactId>BilinearMapAccumulator</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/zhangzhongjun/${project.artifactId}</url>
     <description>BilinearMapAccumulator is a library of bilinear-map accumulator for java</description>
@@ -32,7 +32,7 @@
         <connection>scm:git:https://github.com/zhangzhongjun/BilinearMapAccumulator.git</connection>
         <developerConnection>scm:git:https://github.com/zhangzhongjun/BilinearMapAccumulator.git</developerConnection>
         <url>https://github.com/zhangzhongjun/BilinearMapAccumulator</url>
-    <tag>BilinearMapAccumulator-0.1</tag>
+        <tag>BilinearMapAccumulator-0.1</tag>
   </scm>
     
     <properties>
